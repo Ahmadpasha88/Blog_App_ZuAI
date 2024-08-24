@@ -1,0 +1,26 @@
+.blogCardBg{
+    background-color: rgba(0, 0, 0, 0.881);
+}
+
+.viewBlogBtn {
+    background-color: whitesmoke; /* background color of the div */
+    box-shadow: 4px 5px 13px rgba(8, 8, 8, 0.6); /* white shadow */
+  }
+
+  .posterImage{
+    overflow: hidden;
+    object-fit:contain;
+  }
+
+  .trendingFlag{
+    position: absolute;
+    margin-top: 38px;
+    margin-left: 26px;
+  transform: translate(-50%, -50%) rotate(-45deg); /* Center and rotate diagonally */
+  white-space: nowrap; /* Prevent text wrapping */
+
+  }
+
+  .blogCardBg p,h1,h3,div,span{
+    background-color: transparent;
+  }

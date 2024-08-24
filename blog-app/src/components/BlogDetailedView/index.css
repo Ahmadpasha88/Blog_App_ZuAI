@@ -1,0 +1,4 @@
+.blogImage{
+    overflow: hidden;
+    object-fit:scale-down;
+}

@@ -1,8 +1,16 @@
 *{
   margin: 0;
   padding: 0;
+}
+
+.mainColorsAndFont{
   background-color: black;
   color: white;
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.minHeight{
+  min-height: 80vh;
 }
 
