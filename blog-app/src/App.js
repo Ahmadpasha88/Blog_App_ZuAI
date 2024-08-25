@@ -6,11 +6,11 @@ import ContactUs from "./components/ContactUs";
 import Header from "./components/Header";
 import NotFound from "./components/NotFound";
 import Footer from "./components/Footer";
-import Profile from "./components/Profile";
-import BlogerProfileView from "./components/BloggerProfileView";
 import BlogDetailedView from "./components/BlogDetailedView";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import NewBlogPost from "./components/NewBlogPost";
+import UpdateBlog from "./components/UpdateBlog";
 
 function App() {
   return (
@@ -24,8 +24,8 @@ function App() {
           <Route path="register" element={<Register />} />
           <Route path="/contact_us" element={<ContactUs />} />
           <Route path="/posts/:id" element={<BlogDetailedView />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/bloger_profile" element={<BlogerProfileView />} />
+          <Route path="/newBlog" element={<NewBlogPost/>} />
+          <Route path="/updateBlog" element={<UpdateBlog/>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
