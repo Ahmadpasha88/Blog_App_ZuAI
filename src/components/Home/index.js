@@ -4,15 +4,16 @@ import Blog from "../Blog";
 import { TbSquareRoundedPlus } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import {TailSpin} from 'react-loader-spinner';
 
 const Home = () => {
   const navigate = useNavigate();
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const handelNewBlogPostBtn = () => {
     navigate("/newBlog");
   };
-
-  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -20,8 +21,10 @@ const Home = () => {
         const response = await axios.get("https://blogerapi-zuai-1.onrender.com/api/posts");
         console.log(response.data);
         setPosts(response.data);
+        setLoading(false); // Set loading to false once data is fetched
       } catch (error) {
         console.error("Error fetching posts:", error);
+        setLoading(false); // Set loading to false in case of an error
       }
     };
 
@@ -43,11 +46,27 @@ const Home = () => {
       >
         <TbSquareRoundedPlus className="m-0 p-0" />
       </button>
-      <div className="row m-0 p-0 gap-3 mt-5 mb-2">
-        {posts.map((post) => (
-          <Blog key={post.id} data={post} />
-        ))}
-      </div>
+
+      {/* Show loader while data is being fetched */}
+      {loading ? (
+        <div className="d-flex justify-content-center mt-5">
+          <TailSpin
+            color="#00BFFF"
+            height={100}
+            width={100}
+          />
+        </div>
+      ) : (
+        <div className="row m-0 p-0 gap-3 mt-5 mb-2">
+          {posts.length > 0 ? (
+            posts.map((post) => (
+              <Blog key={post.id} data={post} />
+            ))
+          ) : (
+            <p className="text-center">No posts available.</p>
+          )}
+        </div>
+      )}
     </div>
   );
 };

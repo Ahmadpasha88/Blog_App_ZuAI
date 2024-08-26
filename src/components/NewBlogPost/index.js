@@ -19,7 +19,6 @@ const NewBlogPost = () => {
     const file = e.target.files[0];
     setPhoto(file);
 
-   
     const reader = new FileReader();
     reader.onloadend = () => {
       setImagePreview(reader.result);
@@ -30,6 +29,19 @@ const NewBlogPost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setError(null); // Reset error message
+
+    // Basic validation
+    if (!title.trim()) {
+      setError("Title is required.");
+      setLoading(false);
+      return;
+    }
+    if (!content.trim()) {
+      setError("Content is required.");
+      setLoading(false);
+      return;
+    }
 
     const formData = new FormData();
     formData.append("title", title);
@@ -48,18 +60,29 @@ const NewBlogPost = () => {
         }
       );
 
-      if (response.ok) {
+      if (response.status === 401) {
+        Swal.fire({
+          title: "Unauthorized",
+          text: "You don't have access to post. Please login first.",
+          icon: "error",
+        });
+      } else if (response.status === 200) {
         Swal.fire({
           title: "Good job!",
-          text: "Blog POsted Successfully!",
+          text: "Blog Posted Successfully!",
           icon: "success",
         });
+        navigate("/");
       }
-      setLoading(false)
-      navigate("/");
     } catch (error) {
       console.error("Failed to create blog:", error);
-      setLoading(false)
+      Swal.fire({
+        title: "Error",
+        text: "An error occurred while creating the blog need to login.",
+        icon: "error",
+      });
+    } finally {
+      setLoading(false);
     }
   };
 

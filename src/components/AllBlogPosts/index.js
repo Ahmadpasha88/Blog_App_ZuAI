@@ -4,11 +4,13 @@ import axios from "axios";
 import BlogCard from "../BlogCard";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import {TailSpin} from 'react-loader-spinner';
 
 const AllBlogPosts = () => {
   const [posts, setPosts] = useState([]);
   const [deletedPostId, seteDeletedPostId] = useState(null);
   const [error, setError] = useState(null);
+  const [isLoading,setisLoading] = useState(true);
 
   const navigate = useNavigate();
 
@@ -38,9 +40,11 @@ const AllBlogPosts = () => {
         } else {
           setPosts([]); 
         }
+        setisLoading(false)
       } catch (error) {
         console.error("Error fetching posts:", error);
         setError("Failed to fetch posts.");
+        setisLoading(false)
       }
     };
 
@@ -49,7 +53,15 @@ const AllBlogPosts = () => {
 
   return (
     <div className="minHeight">
-      <div className="row col-11 col-md-9 col-lg-5 m-auto my-3 border rounded-3 searchBar sticky-top">
+      {
+        isLoading? <div className="d-flex justify-content-center mt-5">
+        <TailSpin
+          color="#00BFFF"
+          height={100}
+          width={100}
+        />
+      </div>:<>
+        <div className="row col-11 col-md-9 col-lg-5 m-auto my-3 border rounded-3 searchBar sticky-top">
         <input
           type="search"
           placeholder="search blogs ..."
@@ -75,6 +87,9 @@ const AllBlogPosts = () => {
           ))
         )}
       </div>
+        </>
+      }
+      
     </div>
   );
 };
