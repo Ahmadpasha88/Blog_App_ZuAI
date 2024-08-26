@@ -1,70 +1,99 @@
-# Getting Started with Create React App
+Im creating documation for both frontend and backend here only
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+Project Overview:
+The Bloger Project is a full-stack web application designed for creating and managing blog posts. The application allows users to create, view, edit, and delete blog posts, as well as search for blogs. The backend is built using Node.js, Express.js, and PostgreSQL, while the frontend is developed using React.js.
 
-### `npm start`
+Technologies Used
+Backend:
+Node.js: JavaScript runtime for building the server-side application.
+Express.js: Web framework for handling HTTP requests and routing.
+PostgreSQL: Relational database management system.
+Sequelize: ORM for interacting with the PostgreSQL database.
+JWT: For user authentication.
+Axios: For making HTTP requests to the backend API.
+Frontend:
+React.js: JavaScript library for building user interfaces.
+React Router: For routing and navigation within the application.
+Bootstrap: For styling and responsive design.
+React Icons: For adding icons to the UI.
+React Loader Spinner: For loading indicators.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Backend Setup
+Installation
+Clone the repository: both frontend and backend
 
-### `npm test`
+Install the dependencies: npm install 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+.env variables PORT=5000
+DB_HOST=your_database_host
+DB_USER=your_database_user
+DB_PASSWORD=your_database_password
+DB_NAME=your_database_name
+JWT_SECRET=your_jwt_secret
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+configure the Sequelize connection to your PostgreSQL database:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+const { Sequelize } = require('sequelize');
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+  host: process.env.DB_HOST,
+  dialect: 'postgres',
+});
 
-### `npm run eject`
+module.exports = sequelize;
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The backend provides the following API routes:
 
-## Learn More
+User Routes:
+POST /api/users/register: Register a new user.
+POST /api/users/login: Authenticate a user and return a JWT.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Blog Routes:
+GET /api/posts: Fetch all blog posts.
+POST /api/posts: Create a new blog post.
+PUT /api/posts/:id: Update a blog post by ID.
+DELETE /api/posts/:id: Delete a blog post by ID.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Comment Routes:
+GET /api/comments/:blogId: Fetch all comments for a specific blog post.
+POST /api/comments: Add a new comment to a blog post.
+DELETE /api/comments/:id: Delete a comment by ID.
 
-### Code Splitting
+Running the Backend
+To start the backend server, run: developement server is npm run dev, production server npm start run 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Deploy to a cloud provider: You can deploy your backend on platforms like Heroku, Render, or AWS. Make sure to set up your environment variables on the platform and configure your PostgreSQL database accordingly.
 
-### Analyzing the Bundle Size
+in my task i have used Render:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Create a new service on Render.
+Connect your GitHub repository.
+Add the necessary environment variables.
+Deploy the application.
 
-### Making a Progressive Web App
+Prepare the application for production
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+for frontend i have used vercel to deployee react app
 
-### Advanced Configuration
+Creating a New Blog Post
+Navigate to the /newBlog route.
+Fill in the blog title, content, and upload an image.
+Click on the "Submit" button to create a new blog post.
+Searching for Blogs
+Use the search bar on the Home or AllBlogPosts components to search for blogs by title, content, or author name.
+Troubleshooting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+400 Bad Request on Login:
+Ensure the API endpoint URL is correct.
+Verify that the correct request payload is being sent to the backend.
 
-### Deployment
+Database Tables Clearing:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Check the sequelize.sync() configuration to avoid clearing tables on every server restart.
