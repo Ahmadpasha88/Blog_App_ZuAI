@@ -19,7 +19,7 @@ const Home = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get("https://blogerapi-zuai-1.onrender.com/api/posts");
+        const response = await axios.get("https://blogerapi-zuai.onrender.com/api/posts");
         setPosts(response.data);
         setLoading(false);
       } catch (error) {
