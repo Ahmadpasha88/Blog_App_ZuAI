@@ -65,7 +65,7 @@ const NewBlogPost = () => {
           text: "You don't have access to post. Please login first.",
           icon: "error",
         });
-      } else if (response.status === 200) {
+      } else if (response.status === 201) {
         Swal.fire({
           title: "Good job!",
           text: "Blog Posted Successfully!",
