@@ -22,11 +22,11 @@ const Register = () => {
     }
   }, [isLogedIn, navigate]);
 
-  // Handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
 
-    // Validate input
+  const handleSubmit = async (e) => {
+    e.preventDefault(); 
+
+ 
     if (!name || !email || !password || !confirmPassword) {
       setError("All fields are required");
       return;
@@ -37,8 +37,7 @@ const Register = () => {
       return;
     }
 
-    setLoading(true); // Show loading state
-
+    setLoading(true); 
     try {
       const response = await fetch("https://blogerapi-zuai.onrender.com/api/users/register", {
         method: "POST",

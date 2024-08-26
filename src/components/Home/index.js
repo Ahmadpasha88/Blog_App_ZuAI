@@ -4,12 +4,13 @@ import Blog from "../Blog";
 import { TbSquareRoundedPlus } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import {TailSpin} from 'react-loader-spinner';
+import { TailSpin } from 'react-loader-spinner';
 
 const Home = () => {
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState(""); 
 
   const handelNewBlogPostBtn = () => {
     navigate("/newBlog");
@@ -19,25 +20,32 @@ const Home = () => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get("https://blogerapi-zuai-1.onrender.com/api/posts");
-        console.log(response.data);
         setPosts(response.data);
-        setLoading(false); // Set loading to false once data is fetched
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching posts:", error);
-        setLoading(false); // Set loading to false in case of an error
+        setLoading(false); 
       }
     };
 
     fetchPosts();
   }, []);
 
+
+  const filteredPosts = posts.filter(post => 
+    post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    post.content.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="minHeight">
       <div className="row col-11 col-md-9 col-lg-5 m-auto my-3 border rounded-3 searchBar sticky-top">
         <input
           type="search"
-          placeholder="search blog, bolger name, category, topic ..."
+          placeholder="Search blogs ..."
           className="col-12 p-3 rounded-3 border"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)} 
         />
       </div>
       <button
@@ -47,7 +55,6 @@ const Home = () => {
         <TbSquareRoundedPlus className="m-0 p-0" />
       </button>
 
-      {/* Show loader while data is being fetched */}
       {loading ? (
         <div className="d-flex justify-content-center mt-5">
           <TailSpin
@@ -58,12 +65,12 @@ const Home = () => {
         </div>
       ) : (
         <div className="row m-0 p-0 gap-3 mt-5 mb-2">
-          {posts.length > 0 ? (
-            posts.map((post) => (
+          {filteredPosts.length > 0 ? (
+            filteredPosts.map((post) => (
               <Blog key={post.id} data={post} />
             ))
           ) : (
-            <p className="text-center">No posts available.</p>
+            <p className="text-center">No posts found.</p>
           )}
         </div>
       )}

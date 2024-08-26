@@ -29,9 +29,8 @@ const NewBlogPost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError(null); // Reset error message
+    setError(null); 
 
-    // Basic validation
     if (!title.trim()) {
       setError("Title is required.");
       setLoading(false);
