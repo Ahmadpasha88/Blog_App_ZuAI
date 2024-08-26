@@ -17,7 +17,7 @@ const UpdateBlog = () => {
     const fetchBlog = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/posts/${id}`
+          `https://blogerapi-zuai.onrender.com/api/posts/${id}`
         );
         const blog = response.data;
         setTitle(blog.title);
@@ -54,7 +54,7 @@ const UpdateBlog = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/posts/${id}`,
+        `https://blogerapi-zuai.onrender.com/api/posts/${id}`,
         formData,
         {
           headers: {

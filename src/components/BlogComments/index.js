@@ -7,12 +7,13 @@ const BlogComments = ({ blogId }) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const commentsEndRef = useRef(null);
+  const [loading,setLoading]= useState(false);
 
   useEffect(() => {
     const fetchComments = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/comments/${blogId}`
+          `https://blogerapi-zuai.onrender.com/api/comments/${blogId}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch comments. Please try again later.");
@@ -47,14 +48,17 @@ const BlogComments = ({ blogId }) => {
     if (newComment.trim() === "") return;
 
     try {
-      const response = await fetch("http://localhost:5000/api/comments", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${Cookies.get("token")}`,
-        },
-        body: JSON.stringify({ blog_id: blogId, comment: newComment.trim() }),
-      });
+      const response = await fetch(
+        "https://blogerapi-zuai.onrender.com/api/comments",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${Cookies.get("token")}`,
+          },
+          body: JSON.stringify({ blog_id: blogId, comment: newComment.trim() }),
+        }
+      );
 
       if (response.status === 401) {
         Swal.fire({
@@ -87,6 +91,7 @@ const BlogComments = ({ blogId }) => {
       <h3 className="fw-bold text-decoration-underline">
         Comments ({comments.length})
       </h3>
+      <p>{loading?<span>Posting Your Comment</span>:''}</p>
       <div className="my-3 p-2" style={{ height: "50vh", overflowY: "scroll" }}>
         {comments.length === 0 ? (
           <div className="text-center">
@@ -95,8 +100,8 @@ const BlogComments = ({ blogId }) => {
         ) : (
           comments.map((comment) => (
             <div
+              key={comment.comment_id}
               className="mb-2 border border-0 border-bottom"
-              key={comment.id}
             >
               <p className="pb-0 mb-0">
                 <strong>{comment.name}</strong>

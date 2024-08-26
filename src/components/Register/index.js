@@ -40,13 +40,12 @@ const Register = () => {
     setLoading(true); // Show loading state
 
     try {
-      const response = await fetch("http://localhost:5000/api/users/register", {
-        // Adjust the endpoint as needed
+      const response = await fetch("https://blogerapi-zuai.onrender.com/api/users/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, mail: email, password }),
+        body: JSON.stringify({ name:name, mail: email, password:confirmPassword }),
       });
 
       if (!response.ok) {
@@ -55,21 +54,13 @@ const Register = () => {
 
       const data = await response.json();
       if (response.ok) {
-        if (data.status) {
           Swal.fire({
             title: "Good job!",
             text: "Account Created Successfully!",
             icon: "success",
           });
           navigate("/login");
-        } else {
-          Swal.fire({
-            title: "Error!",
-            text: `User ${data.msg}`,
-            icon: "error",
-            confirmButtonText: "Ok",
-          });
-        }
+      
       } else {
         console.log("Registration failed:", data);
       }

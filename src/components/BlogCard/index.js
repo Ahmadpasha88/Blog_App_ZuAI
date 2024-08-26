@@ -19,7 +19,7 @@ const BlogCard = ({ data, onDelete }) => {
   const handleDeleteBtn = async () => {
     setLoading(true);
     try {
-      await axios.delete(`http://localhost:5000/api/posts/${data.id}`, {
+      await axios.delete(`https://blogerapi-zuai.onrender.com/api/posts/${data.id}`, {
         headers: {
           Authorization: `Bearer ${Cookies.get("token")}`,
           "Content-Type": "application/json",

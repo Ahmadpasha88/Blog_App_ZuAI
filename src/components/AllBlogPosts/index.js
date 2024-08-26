@@ -6,7 +6,7 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
 const AllBlogPosts = () => {
-  const [posts, setPosts] = useState([]); // Initialize posts as an empty array
+  const [posts, setPosts] = useState([]);
   const [deletedPostId, seteDeletedPostId] = useState(null);
   const [error, setError] = useState(null);
 
@@ -24,11 +24,11 @@ const AllBlogPosts = () => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/posts/user",
+          "https://blogerapi-zuai.onrender.com/api/posts/user",
           {
             headers: {
-              Authorization: `Bearer ${Cookies.get("token")}`, // Add Bearer token
-              "Content-Type": "application/json", // Set Content-Type
+              Authorization: `Bearer ${Cookies.get("token")}`, 
+              "Content-Type": "application/json", 
             },
           }
         );
@@ -36,7 +36,7 @@ const AllBlogPosts = () => {
         if (Array.isArray(response.data)) {
           setPosts(response.data);
         } else {
-          setPosts([]); // Ensure posts is an array
+          setPosts([]); 
         }
       } catch (error) {
         console.error("Error fetching posts:", error);

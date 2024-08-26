@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { FaEye } from "react-icons/fa";
-import { AiOutlineLike } from "react-icons/ai";
-import { IoMdShareAlt } from "react-icons/io";
 import axios from "axios";
 import "./index.css";
 import BlogComments from "../BlogComments";
@@ -17,8 +14,8 @@ const BlogDetailedView = () => {
     const fetchBlogPost = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/posts/${id}`
-        ); // Fetch the blog post data
+          `https://blogerapi-zuai.onrender.com/api/posts/${id}`
+        );
         console.log(response);
         setBlogPost(response.data);
         setLoading(false);

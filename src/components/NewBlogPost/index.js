@@ -19,7 +19,7 @@ const NewBlogPost = () => {
     const file = e.target.files[0];
     setPhoto(file);
 
-    // Preview the selected image
+   
     const reader = new FileReader();
     reader.onloadend = () => {
       setImagePreview(reader.result);
@@ -29,6 +29,7 @@ const NewBlogPost = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const formData = new FormData();
     formData.append("title", title);
@@ -37,7 +38,7 @@ const NewBlogPost = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/posts",
+        "https://blogerapi-zuai.onrender.com/api/posts",
         formData,
         {
           headers: {
@@ -54,9 +55,11 @@ const NewBlogPost = () => {
           icon: "success",
         });
       }
+      setLoading(false)
       navigate("/");
     } catch (error) {
       console.error("Failed to create blog:", error);
+      setLoading(false)
     }
   };
 
