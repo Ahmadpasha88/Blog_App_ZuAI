@@ -22,8 +22,8 @@ function Header() {
         >
           Bloger
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse className="bg-transparent" id="navbarScroll">
+        <Navbar.Toggle aria-controls="navbarScroll" style={{color:'white',backgroundColor:'white'}} />
+        <Navbar.Collapse className="bg-transparent" id="navbarScroll" style={{color:'white',backgroundColor:'white'}}>
           <Nav
             className="m-auto my-2 my-lg-0 gap-4 fw-bold bg-transparent"
             style={{ maxHeight: "100px" }}
@@ -32,12 +32,13 @@ function Header() {
             <Nav.Link className="text-white" href="/">
               Home
             </Nav.Link>
-            <Nav.Link className="text-white" href="/contact_us">
-              Contact Us
-            </Nav.Link>
             <Nav.Link className="text-white" href="/about">
               About
             </Nav.Link>
+            <Nav.Link className="text-white" href="/contact_us">
+              Contact Us
+            </Nav.Link>
+           
             {isLogedIn && (
               <Nav.Link className="text-white" href="/allPosts">
                 All Posts
