@@ -73,33 +73,33 @@ const Register = () => {
   return (
     <div className="minHeight d-flex flex-column justify-content-center align-items-center">
       <div className="col-11 col-md-8 col-lg-5 m-auto border row rounded-3 pt-2 registerBg">
-        <h3 className="text-center">Register</h3>
+        <h3 className="text-center mb-4 mt-3">Register</h3>
         <form onSubmit={handleSubmit} className="row m-auto">
           <input
             type="text"
             placeholder="Enter Name"
-            className="col-12 m-auto p-1 fs-6 fw-medium mb-2 rounded-3"
+            className="col-12 m-auto p-2 fs-6 fw-medium mb-2 rounded-3 border-0"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
           <input
             type="email"
             placeholder="Enter Mail Id"
-            className="col-12 m-auto p-1 fs-6 fw-medium mb-2 rounded-3"
+            className="col-12 m-auto p-2 fs-6 fw-medium mb-2 rounded-3 border-0"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="password"
             placeholder="Enter Password"
-            className="col-12 m-auto p-1 fs-6 fw-medium mb-2 rounded-3"
+            className="col-12 m-auto p-2 fs-6 fw-medium mb-2 rounded-3 border-0"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <input
             type="password"
             placeholder="Enter Confirm Password"
-            className="col-12 m-auto p-1 fs-6 fw-medium mb-2 rounded-3"
+            className="col-12 m-auto p-2 fs-6 fw-medium mb-2 rounded-3 border-0"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
@@ -107,7 +107,7 @@ const Register = () => {
           <div className="text-center">
             <button
               type="submit"
-              className="btn bg-white text-dark"
+              className="btn bg-white text-dark fw-bold mt-3"
               disabled={loading}
             >
               {loading ? "Registering..." : "Register Now"}

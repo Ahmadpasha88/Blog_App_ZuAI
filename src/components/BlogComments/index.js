@@ -8,7 +8,8 @@ const BlogComments = ({ blogId }) => {
   const [newComment, setNewComment] = useState("");
   const commentsEndRef = useRef(null);
   const [loading,setLoading]= useState(false);
-
+  const [newPostCreated,setNewPostCreated]=useState(false);
+  
   useEffect(() => {
     const fetchComments = async () => {
       try {
@@ -32,7 +33,7 @@ const BlogComments = ({ blogId }) => {
     };
 
     fetchComments();
-  }, [blogId]);
+  }, [blogId,newPostCreated]);
 
   useEffect(() => {
     if (commentsEndRef.current) {
@@ -76,6 +77,7 @@ const BlogComments = ({ blogId }) => {
       const newCommentData = await response.json();
       setComments((prevComments) => [...prevComments, newCommentData]);
       setNewComment("");
+      setNewPostCreated(true)
     } catch (error) {
       console.error("Error posting comment:", error);
       Swal.fire({
