@@ -6,7 +6,7 @@ const About = () => {
       <div className="text-center col-10 col-md-9 col-lg-8 m-auto py-5">
         <h3 className="fw-bold">About Us</h3>
         <p className="text-white-50 fs-6 fw-bold  lh-sm">
-          Welcome to Bloger, your go-to destination for insightful articles,
+          Welcome to Blogger, your go-to destination for insightful articles,
           thought-provoking opinions, and the latest trends across a variety of
           topics. Whether you're passionate about technology, lifestyle, travel,
           food, or personal growth, we have something for everyone.
@@ -16,7 +16,7 @@ const About = () => {
         <h3 className="fw-bold">Our Mission</h3>
 
         <p className="text-white-50 fs-6 fw-bold  lh-sm">
-          At Bloger App, our mission is to create a platform that fosters
+          At Blogger App, our mission is to create a platform that fosters
           creativity, knowledge-sharing, and meaningful discussions. We believe
           in the power of words to inspire, inform, and connect people from all
           walks of life.
@@ -39,7 +39,7 @@ const About = () => {
         <hr />
         <h3 className="fw-bold">Our Story</h3>
         <p className="text-white-50 fs-6 fw-bold  lh-sm">
-          Bloger was born out of a desire to create a space where people can
+          Blogger was born out of a desire to create a space where people can
           come together to share their ideas and experiences. What started as a
           small project has grown into a vibrant community of readers and
           writers who are passionate about learning and growing together.
@@ -49,7 +49,7 @@ const About = () => {
         <p className="text-white-50 fs-6 fw-bold  lh-sm">
           We invite you to join our community, explore our content, and share
           your thoughts. Whether you're a seasoned blogger or just starting out,
-          Bloger App is a place where your voice can be heard.
+          Blogger App is a place where your voice can be heard.
         </p>
         <p>Thank you for being a part of our journey!</p>
       </div>

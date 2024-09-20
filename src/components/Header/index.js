@@ -20,7 +20,7 @@ function Header() {
           className="fw-bolder fs-3 bg-transparent text-white"
           href="/"
         >
-          Bloger
+          Blogger
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" style={{color:'white',backgroundColor:'white'}} />
         <Navbar.Collapse className="bg-transparent" id="navbarScroll" style={{color:'white',backgroundColor:'white'}}>
