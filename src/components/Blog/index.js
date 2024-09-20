@@ -20,7 +20,7 @@ const Blog = ({ data }) => {
       <h3 className="fw-bold text-white text-center">{data.title}</h3>
       <p className="text-white-50">
         {data.content.length > 20
-          ? `${data.content.substring(0, 20)}...`
+          ? `${data.content.substring(0, 30)}...`
           : data.content}
       </p>
       <div className="text-center">

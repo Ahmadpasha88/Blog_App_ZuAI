@@ -42,7 +42,7 @@ const Home = () => {
       <div className="row col-11 col-md-9 col-lg-5 m-auto my-3 border rounded-3 searchBar sticky-top">
         <input
           type="search"
-          placeholder="Search blogs ..."
+          placeholder="Search blogs with name, content ..."
           className="col-12 p-3 rounded-3 border"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)} 
